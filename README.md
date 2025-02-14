@@ -7,8 +7,7 @@ Help me to train a bert based model for transcribing,i have the audios and the t
 ChatGPT said:
 Memory updated
 To train a BERT-based model for transcription, you’ll need to process your audio data into a format that aligns with textual representations. Here’s a structured approach:
-
-#1. Convert Audio to Spectrograms
+# Convert Audio to Spectrograms
 Since you’re working with spectrograms (as shown in your reference image), you need to extract Mel spectrogram features from your audio files using librosa in Python:
 
 python
@@ -36,7 +35,7 @@ plt.title("Mel Spectrogram")
 plt.show()
 This will give you the spectrogram representation of your audio.
 
-#2. Align Words with Spectrogram Time Intervals
+# Align Words with Spectrogram Time Intervals
 To map words to their spectrographic values, you can use forced alignment tools like:
 
 Montreal Forced Aligner (MFA)
@@ -72,7 +71,7 @@ ExecuteTask(task).execute()
 task.output_sync_map_file()
 This generates a JSON file with timestamps for each word.
 
-#3. Remove Trailing Values from Audio
+# Remove Trailing Values from Audio
 To trim silence or extra noise at the beginning and end of the audio, use librosa.effects.trim:
 
 python
@@ -86,7 +85,7 @@ def trim_audio(audio_path):
     return y_trimmed, sr
 
 y_trimmed, sr = trim_audio("example.wav")
-#4. Train a BERT-Based Model
+# Train a BERT-Based Model
 Since BERT works with text, but your input is audio, you'll need a model that integrates audio embeddings:
 
 Convert spectrogram features into embeddings using a CNN (e.g., with a pre-trained Wav2Vec2 or HuBERT model).
