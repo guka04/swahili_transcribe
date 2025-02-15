@@ -117,6 +117,10 @@ Align your dataset using MFA or Aeneas.
 Preprocess audio with spectrograms and silence trimming.
 Fine-tune Wav2Vec2/BERT on your dataset.
 Would you like help implementing a specific part of this? 🚀
-
+# Install tensorflow $ libs...
+(swahili_bert _310) khaguh@khaguh-Oldlab:~/swahili_bert_310$ ./bin/python3.10 -m pip install tensorboard==2.17.1 tensorboa
+rd-data-server==0.7.2 tensorflow==2.17.0 termcolor==2.5.0 typing-extensions==4.12.2 urllib3==2.3.0 werkzeug==3.1.3 wheel==
+0.45.1 wrapt==1.17.2 tensorflow-io==0.37.1 tensorflow-io-gcs-filesystem==0.37.1
+Collecting tensorboard==2.17.1
 
 
