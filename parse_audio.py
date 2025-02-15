@@ -28,9 +28,9 @@ def load_wav_16k_mono(filename):
 
 tweet_210_wave = load_wav_16k_mono(tweet_210_wav)
 
-# plt.plot(tweet_210_wave)
-# #plt.plot(tweet_210_wave)
-# plt.show()
+plt.plot(tweet_210_wave)
+#plt.plot(tweet_210_wave)
+plt.show()
 # print(len(tweet_210_wave))
 # end=len(tweet_210_wave)-70000
 # start=70000
@@ -39,20 +39,31 @@ tweet_210_wave = load_wav_16k_mono(tweet_210_wav)
 # # #plt.plot(tweet_210_wave)
 # plt.show()
 
+# def preprocess(file_path, label): 
+#     wav = load_wav_16k_mono(file_path)
+#     length= 48000 #len(wav)
+#     wav = wav[:length]
+#     zero_padding = tf.zeros([length] - tf.shape(wav), dtype=tf.float32)
+#     wav = tf.concat([zero_padding, wav],0)
+#     spectrogram = tf.signal.stft(wav, frame_length=16, frame_step=8)
+#     spectrogram = tf.abs(spectrogram)
+#     spectrogram = tf.expand_dims(spectrogram, axis=2)
+#     return spectrogram, label
+
 def preprocess(file_path, label): 
     wav = load_wav_16k_mono(file_path)
-    length=len(wav)
-    wav = wav[:length]
-    zero_padding = tf.zeros([length] - tf.shape(wav), dtype=tf.float32)
+    wav = wav[:48000]
+    zero_padding = tf.zeros([48000] - tf.shape(wav), dtype=tf.float32)
     wav = tf.concat([zero_padding, wav],0)
-    spectrogram = tf.signal.stft(wav, frame_length=16, frame_step=1)
+    spectrogram = tf.signal.stft(wav, frame_length=320, frame_step=32)
     spectrogram = tf.abs(spectrogram)
     spectrogram = tf.expand_dims(spectrogram, axis=2)
     return spectrogram, label
 
+
 spectrogram, label = preprocess(tweet_210_wav, 1)
 print(spectrogram)
-# plt.figure(figsize=(100,20))
-# plt.imshow(tf.transpose(spectrogram)[0])
-# plt.show()
+plt.figure(figsize=(30,20))
+plt.imshow(tf.transpose(spectrogram)[0])
+plt.show()
 

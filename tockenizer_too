@@ -1,0 +1,24 @@
+import os
+from transformers import AutoTokenizer
+
+def simple_tokenizer(text):
+    """Splits text into words for Aeneas alignment (no subword tokenization)."""
+    return text.split()  # Basic whitespace split
+
+def tokenize_text_file(text_path):
+    """Reads a text file, tokenizes it word-by-word, and saves a new file."""
+    with open(text_path, "r", encoding="utf-8") as f:
+        text = f.read().strip()
+
+    words = simple_tokenizer(text)  # Use simple tokenizer for Aeneas
+
+    tokenized_text_path = text_path.replace(".txt", "_tokenized.txt")
+    with open(tokenized_text_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(words))  # Each word on a new line
+
+    return tokenized_text_path
+
+# Example Usage
+tweet_210_txt = "/home/khaguh/swahili_bert/data/tweet_210/tweet_210.txt"
+tokenized_file = tokenize_text_file(tweet_210_txt)
+print(f"Tokenized text saved at: {tokenized_file}")
